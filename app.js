@@ -12,6 +12,8 @@ const ALL = "ALL";
 
 const els = {
   memberTabs: document.getElementById("member-tabs"),
+  clockDate: document.getElementById("clock-date"),
+  clockTime: document.getElementById("clock-time"),
   monthLabel: document.getElementById("month-label"),
   calendarGrid: document.getElementById("calendar-grid"),
   prevMonth: document.getElementById("prev-month"),
@@ -278,6 +280,17 @@ function renderTodos() {
   }
 }
 
+// 상단 시계: "2026.09.30 WED" / "14:32:05"
+function renderClock() {
+  const now = new Date();
+  els.clockDate.textContent = `${formatDate(now).replaceAll("-", ".")} ${WEEKDAYS[now.getDay()]}`;
+  const hm = `${padMonth(now.getHours())}:${padMonth(now.getMinutes())}`;
+  const sec = document.createElement("span");
+  sec.className = "clock-sec";
+  sec.textContent = `:${padMonth(now.getSeconds())}`;
+  els.clockTime.replaceChildren(hm, sec);
+}
+
 function render() {
   renderMemberTabs();
   renderCalendar();
@@ -347,3 +360,5 @@ els.todoForm.addEventListener("submit", (event) => {
 });
 
 render();
+renderClock();
+setInterval(renderClock, 1000);
