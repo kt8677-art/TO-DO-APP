@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TEAM DAILY</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <p class="eyebrow">Team Daily To-Do</p>
+        <h1 class="logo">TODAY</h1>
+      </header>
+
+      <nav id="member-tabs" class="member-tabs" aria-label="팀원 선택"></nav>
+
+      <main class="layout">
+        <section class="calendar-panel" aria-label="월간 캘린더">
+          <div class="month-nav">
+            <button type="button" id="prev-month" class="nav-btn" aria-label="이전 달">
+              ‹
+            </button>
+            <h2 id="month-label" class="month-label"></h2>
+            <button type="button" id="go-today" class="today-btn">TODAY</button>
+            <button type="button" id="next-month" class="nav-btn" aria-label="다음 달">
+              ›
+            </button>
+          </div>
+
+          <div class="weekdays" aria-hidden="true">
+            <span>SUN</span>
+            <span>MON</span>
+            <span>TUE</span>
+            <span>WED</span>
+            <span>THU</span>
+            <span>FRI</span>
+            <span>SAT</span>
+          </div>
+          <div id="calendar-grid" class="calendar-grid"></div>
+        </section>
+
+        <section class="todo-panel" aria-label="할일 목록">
+          <div class="todo-head">
+            <div>
+              <p class="eyebrow">Selected</p>
+              <h2 id="selected-date-label" class="selected-date-label"></h2>
+            </div>
+            <p id="progress" class="progress"></p>
+          </div>
+
+          <form id="todo-form" class="todo-form">
+            <label class="sr-only" for="todo-title">할일 제목</label>
+            <input
+              id="todo-title"
+              name="title"
+              type="text"
+              maxlength="120"
+              placeholder="할일 제목"
+              autocomplete="off"
+              required
+            />
+            <label class="sr-only" for="todo-assignee">담당자</label>
+            <select id="todo-assignee" name="assignee"></select>
+            <label class="sr-only" for="todo-priority">우선순위</label>
+            <select id="todo-priority" name="priority">
+              <option value="normal">보통</option>
+              <option value="urgent">긴급</option>
+            </select>
+            <label class="deadline-field" for="todo-deadline">
+              <span>DEADLINE</span>
+              <input id="todo-deadline" name="deadline" type="date" />
+            </label>
+            <button type="submit" class="add-btn">ADD</button>
+          </form>
+
+          <ul id="todo-list" class="todo-list"></ul>
+          <p id="empty-state" class="empty-state">이 날의 할일이 없습니다.</p>
+        </section>
+      </main>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
